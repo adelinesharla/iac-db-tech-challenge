@@ -30,9 +30,4 @@ resource "aws_rds_cluster" "meu_banco_de_dados" {
   master_password         = var.db_password 
   vpc_security_group_ids  = [aws_security_group.aurora_sg.id]
   skip_final_snapshot     = true
-  
-  serverlessv2_scaling_configuration {
-    min_capacity = 0.5 
-    max_capacity = 1    
-  }
 }

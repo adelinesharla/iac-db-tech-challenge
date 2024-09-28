@@ -1,11 +1,17 @@
-# Variáveis para a infraestrutura geral (EKS, VPC, etc.)
 variable "aws_region" {
   default = "us-east-1"
 }
 
-# Variáveis para o banco de dados Aurora
+variable "vpc_cidr_block" {
+  default = "172.31.0.0/16"
+}
+
 variable "db_password" {
   type      = string
-  sensitive = true  # Marcar como sensível para que o Terraform a trate como um segredo
+  sensitive = true
   description = "Senha do usuário mestre do banco de dados Aurora"
+}
+
+variable "vpc_id" {
+  default = "vpc-003fdd4eb65bd0b81"
 }

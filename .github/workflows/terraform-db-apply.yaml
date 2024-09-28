@@ -26,6 +26,10 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
 
+      - name: Set Terraform Variables
+        run: |
+          echo "db_password=${{ secrets.DB_PASSWORD }}" >> terraform.tfvars
+
       - name: Terraform Init
         run: |
           terraform init \

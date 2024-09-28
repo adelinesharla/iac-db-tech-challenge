@@ -2,25 +2,6 @@ provider "aws" {
   region = var.aws_region 
 }
 
-resource "aws_security_group" "aurora_sg" {
-  name        = "my_vpc"
-  vpc_id      = var.vpc_id
-
-  ingress {
-    from_port   = 5432
-    to_port     = 5432
-    protocol    = "tcp"
-    cidr_blocks = var.vpc_cidr_block
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-}
-
 resource "aws_rds_cluster" "meu_banco_de_dados" {
   cluster_identifier      = "meu-cluster-aurora" 
   engine                  = "aurora-postgresql"
@@ -28,6 +9,6 @@ resource "aws_rds_cluster" "meu_banco_de_dados" {
   database_name           = "tech_challenge_dev"
   master_username         = "postgres"
   master_password         = var.db_password 
-  vpc_security_group_ids  = [aws_security_group.aurora_sg.id]
+  vpc_security_group_ids  = [var.vpc_id]
   skip_final_snapshot     = true
 }

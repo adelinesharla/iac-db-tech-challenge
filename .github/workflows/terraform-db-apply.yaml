@@ -28,7 +28,7 @@ jobs:
       - name: Terraform Init
         run: |
           terraform init \
-            -backend-config="bucket=seu-bucket-terraform-state" \
+            -backend-config="bucket=terraform-state-tech-challenge-1" \
             -backend-config="key=terraform-db/terraform.tfstate" 
 
       - name: Terraform Plan

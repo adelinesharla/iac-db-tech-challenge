@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_security_group" "aurora_sg" {
-  name        = "default"
+  name        = "my_vpc"
   vpc_id      = var.vpc_id
 
   ingress {

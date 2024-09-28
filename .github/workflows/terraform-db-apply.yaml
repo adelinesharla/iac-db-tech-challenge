@@ -3,13 +3,13 @@ name: Terraform Apply (DB)
 on:
   push:
     branches:
-      - main  # Ou o branch que você usa para alterações na infra do banco
+      - main
 
 jobs:
   terraform:
     name: Terraform
     runs-on: ubuntu-latest
-    environment: production  # Ou o ambiente que você configurou
+    environment: production
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -25,7 +25,10 @@ jobs:
         uses: hashicorp/setup-terraform@v2
 
       - name: Terraform Init
-        run: terraform init -backend-config="key=terraform.tfstate"  # Ou configure outro backend
+        run: |
+          terraform init \
+            -backend-config="bucket=seu-bucket-terraform-state" \
+            -backend-config="key=terraform-db/terraform.tfstate" 
 
       - name: Terraform Plan
         run: terraform plan -out=tfplan

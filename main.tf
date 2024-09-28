@@ -3,8 +3,7 @@ provider "aws" {
 }
 
 resource "aws_security_group" "aurora_sg" {
-  name        = "aurora-security-group"
-  description = "Grupo de segurança para o cluster Aurora Serverless PostgreSQL"
+  name        = "default"
   vpc_id      = var.vpc_id
 
   ingress {

@@ -2,6 +2,10 @@ provider "aws" {
   region = var.aws_region 
 }
 
+terraform {
+  backend "s3" {}
+}
+
 resource "aws_security_group" "aurora_sg" {
   name        = "db_security_group"
   vpc_id      = var.vpc_id

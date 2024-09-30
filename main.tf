@@ -34,4 +34,11 @@ resource "aws_rds_cluster" "meu_banco_de_dados" {
   master_password         = var.db_password 
   vpc_security_group_ids  = [aws_security_group.aurora_sg.id]
   skip_final_snapshot     = true
+
+  scaling_configuration {
+    auto_pause               = true
+    max_capacity             = 256
+    min_capacity             = 2
+    seconds_until_auto_pause = 300
+  }
 }
